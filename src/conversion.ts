@@ -1,21 +1,26 @@
-export const conversionTable = {
-  centimeter: [0.01, "meter"],
-  meter: [1, "meter"],
-  inch: [2.54, "centimeter"],
-  foot: [12, "inch"],
-  yard: [3, "foot"],
-  furlong: [220, "yard"],
-  mile: [1760, "yard"],
-  league: [3, "miles"],
-};
+
+
+export const conversionTable = new Map<string, number>();
+conversionTable.set("centimeter", 0.01);
+conversionTable.set("meter", 1);
+conversionTable.set("inch", 0.0254);
+conversionTable.set("foot", 0.3048);
+conversionTable.set("yard", 0.9144);
+conversionTable.set("furlong", 201.168);
+conversionTable.set("mile", 1609.34);
+conversionTable.set("league", 5556);
+
 
 export function convertToMeters(value: number, unit: string): number {
-  let miles: number,
-    yards: number,
-    feet: number,
+  let centimeters: number,
+    meters: number,
     inches: number,
-    centimeters: number,
-    meters: number;
+    feet: number,
+    yards: number,
+    furlongs: number,
+    miles: number,
+    league: number;
+
   switch (unit) {
     case "league":
       miles = (conversionTable.league[0] as number) * value;
